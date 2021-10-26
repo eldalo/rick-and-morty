@@ -1,0 +1,70 @@
+.main {
+  background: $colorBlack url('#{$images}/bg.png') no-repeat center;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+
+  &__btn {
+    background-color: $colorShadow;
+    border-color: $colorShadow;
+    color: $colorWhite;
+    font-size: rem(14);
+
+    &:focus,
+    &:hover {
+      background-color: $colorSubTitle;
+      border-color: $colorSubTitle;
+      color: $colorWhite;
+    }
+  }
+
+  &__card {
+    background-color: rgba(255,255,255, .7);
+    border: 1px solid $colorTitle;
+    border-radius: rem(15);
+  }
+
+  &__footer {
+    bottom: 0;
+    @include fonts($colorWhite, $fontRegular, 18, 22);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+
+    a {
+      color: $colorShadow;
+      text-decoration: none;
+
+      &:hover {
+        color: $colorSubTitle;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include fonts($colorSubTitle, $fontRegular, 26, 30, bold);
+  }
+
+  &__text {
+    @include fonts($colorText, $fontRegular, 16, 20);
+  }
+
+  &__title {
+    box-shadow: 10px 10px 15px -5px $colorShadow;
+    @include fonts($colorTitle, $fontTitle, 36, 40);
+    position: relative;
+    text-shadow: 5px 5px 5px $colorShadow;
+
+    &:before {
+      border: 1px solid $colorTitle;
+      border-radius: rem(15);
+      content: '';
+      height: 88%;
+      left: 1%;
+      position: absolute;
+      top: 6%;
+      width: 98%;
+    }
+  }
+}
