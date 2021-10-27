@@ -11,6 +11,8 @@ export function* listProfilesSaga() {
     // eslint-disable-next-line no-console
     console.log('response: ', response);
   } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('error', error);
     yield put(listProfiles.failure(error));
   } finally {
     yield put(listProfiles.fulfill());

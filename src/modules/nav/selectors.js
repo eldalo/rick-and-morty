@@ -4,7 +4,7 @@ export const getRouter = (state) => state.router;
 export const getNav = (state) => state.nav;
 export const getCurrentLocation = createSelector(
   getRouter,
-  (router) => router.location
+  (router) => router.location,
 );
 
 export const getFilters = createSelector(getNav, (nav) => nav.filters);
