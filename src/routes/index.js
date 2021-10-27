@@ -9,10 +9,9 @@ const RouteGlobal = ({
   store,
   ...rest
 }) => {
-  const RouteApp = Route;
   if (routes) {
     return (
-      <RouteApp
+      <Route
         exact={exact}
         path={path}
         render={(props) => (
@@ -29,7 +28,7 @@ const RouteGlobal = ({
   }
 
   return (
-    <RouteApp
+    <Route
       exact={exact}
       path={path}
       render={(props) => <Component {...props} {...rest} />}

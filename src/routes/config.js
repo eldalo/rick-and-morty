@@ -1,6 +1,6 @@
-import { listProfiles } from 'modules/rick-morty/actions';
 import Loadable from 'react-loadable';
 import GlobalLoading from 'views/ui/loading';
+import { listProfiles } from 'modules/rick-morty/actions';
 
 const ContainerApp = Loadable({
   loader: () => import('views/containers/app'),
@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/',
     component: ContainerApp,
-    actions: [],
+    published: true,
     routes: [
       {
         path: '/',
@@ -36,6 +36,11 @@ const routes = [
         actions: [],
       },
     ],
+  },
+  {
+    name: '404',
+    path: '*',
+    component: () => null,
   },
 ];
 

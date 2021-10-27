@@ -3,14 +3,18 @@ import { Col } from 'reactstrap';
 import { motion } from 'framer-motion';
 import imageDefault from 'assets/images/default.png';
 
-const Item = ({ id, title, image = null }) => {
+const Item = ({ id, title, image = null, delay = null }) => {
+  const delayCss = delay
+    ? `animate__animated animate__fadeIn animate__delay-${delay}s`
+    : null;
+
   const handleViewProfile = (e) => {
     // eslint-disable-next-line no-console
     console.log('e', e.target.dataset.id);
   };
 
   return (
-    <Col xs={12} sm={6} md={4} lg={4}>
+    <Col xs={12} sm={6} md={4} lg={4} className={delayCss}>
       <motion.div
         className='main__card p-3 text-center'
         whileHover={{

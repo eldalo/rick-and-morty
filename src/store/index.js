@@ -8,19 +8,18 @@ import reducer from './reducer';
 import saga from './saga';
 
 const sagaMiddleware = createSagaMiddleware();
+
 const composeEnhancers =
   process.env.NODE_ENV !== 'production' &&
   typeof window === 'object' &&
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        shouldHotReload: false,
-      })
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ shouldHotReload: false })
     : compose;
 
 const middlewares = [sagaMiddleware, routerMiddleware(history)];
 const enhancers = [applyMiddleware(...middlewares)];
 const store = createStore(reducer, composeEnhancers(...enhancers));
-const persistor = persistStore(store, null);
+const persistor = persistStore(store);
 sagaMiddleware.run(saga);
 
 export { store, persistor };
