@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const api = ({
+export default ({
   url,
   method = 'get',
   data = null,
   params = null,
   responseType = 'json',
 }) => {
+  // @ts-ignore
   return axios({
     method,
     url,
@@ -15,5 +16,3 @@ const api = ({
     responseType,
   });
 };
-
-export default api;

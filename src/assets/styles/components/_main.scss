@@ -1,7 +1,8 @@
 .main {
   background: $colorBlack url('#{$images}/bg.png') no-repeat center;
+  background-attachment: fixed;
   background-size: cover;
-  height: 100%;
+  // height: 100%;
   position: relative;
 
   &__btn {
@@ -43,7 +44,7 @@
   }
 
   &__subtitle {
-    @include fonts($colorSubTitle, $fontRegular, 26, 30, bold);
+    @include fonts($colorSubTitle, $fontRegular, 22, 28, bold);
   }
 
   &__text {

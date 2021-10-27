@@ -1,6 +1,6 @@
 import Loadable from 'react-loadable';
 import GlobalLoading from 'views/ui/loading';
-import { listProfiles } from 'modules/rick-morty/actions';
+import { getProfile, listProfiles } from 'modules/rick-morty/actions';
 
 const ContainerApp = Loadable({
   loader: () => import('views/containers/app'),
@@ -13,7 +13,7 @@ const Dashboard = Loadable({
 });
 
 const Profile = Loadable({
-  loader: () => import('views/screens/dashboard'),
+  loader: () => import('views/screens/profile'),
   loading: GlobalLoading,
 });
 
@@ -33,7 +33,7 @@ const routes = [
         path: '/profile/:id',
         component: Profile,
         exact: true,
-        actions: [],
+        actions: [getProfile],
       },
     ],
   },

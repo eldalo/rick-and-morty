@@ -1,37 +1,38 @@
 import { put, call, all, takeLatest } from 'redux-saga/effects';
 import api from 'utils/api';
-import { listProfiles, viewProfile } from './actions';
+import { listProfiles, getProfile } from './actions';
 
-const { API_HOST } = process.env;
+const API_HOST = 'https://rickandmortyapi.com/api/character/';
 
 export function* listProfilesSaga() {
   try {
     yield put(listProfiles.request());
-    const response = yield call(api, { url: API_HOST });
-    // eslint-disable-next-line no-console
-    console.log('response: ', response);
+    const { data } = yield call(api, { url: API_HOST });
+    yield put(
+      listProfiles.success({ data: data.results, next: data.info.next }),
+    );
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log('error', error);
     yield put(listProfiles.failure(error));
   } finally {
     yield put(listProfiles.fulfill());
   }
 }
 
-export function* viewProfileSaga() {
+export function* getProfileSaga({ payload: { id } }) {
   try {
-    yield put(viewProfile.request());
+    yield put(getProfile.request());
+    const { data } = yield call(api, { url: `${API_HOST}${id}` });
+    yield put(getProfile.success(data));
   } catch (error) {
-    yield put(viewProfile.failure(error));
+    yield put(getProfile.failure(error));
   } finally {
-    yield put(viewProfile.fulfill());
+    yield put(getProfile.fulfill());
   }
 }
 
 export default function* rickAndMortyWatch() {
   yield all([
     takeLatest(listProfiles.TRIGGER, listProfilesSaga),
-    takeLatest(viewProfile.TRIGGER, viewProfileSaga),
+    takeLatest(getProfile.TRIGGER, getProfileSaga),
   ]);
 }
